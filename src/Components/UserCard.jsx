@@ -1,8 +1,16 @@
 // Your code goes here
 // do a default export
-import React from "react";
+import React, { useState } from "react";
 import styles from "./UserCard.module.css";
 const UserCard = ({ name, avatar, posts, followers, address }) => {
+  const [data, setData] = useState("follow");
+  const handleClick = () => {
+    if (data === "follow") {
+      setData("Unfollow");
+    } else {
+      setData("follow");
+    }
+  };
   return (
     <div className={styles.container}>
       <div>
@@ -14,6 +22,7 @@ const UserCard = ({ name, avatar, posts, followers, address }) => {
       <p data-testid="user_posts">{posts}</p>
       <h3>Followers</h3>
       <p data-testid="user_followers">{followers}</p>
+      <button onClick={() => handleClick()}>{data}</button>
     </div>
   );
 };
